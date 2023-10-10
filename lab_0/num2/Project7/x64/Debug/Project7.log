@@ -1,0 +1,6 @@
+﻿  FileName.c
+C:\My fun\C\Project7\Project7\FileName.c(37,22): warning C4244: функция: преобразование "int" в "float", возможна потеря данных
+C:\My fun\C\Project7\Project7\FileName.c(37,27): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\My fun\C\Project7\Project7\FileName.c(38,22): warning C4244: функция: преобразование "int" в "float", возможна потеря данных
+C:\My fun\C\Project7\Project7\FileName.c(38,27): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+  Project7.vcxproj -> C:\My fun\C\Project7\x64\Debug\Project7.exe
