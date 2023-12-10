@@ -1,0 +1,7 @@
+C:\My fun\C#\sharp1_1\sharp1_1\bin\Debug\sharp1_1.exe.config
+C:\My fun\C#\sharp1_1\sharp1_1\bin\Debug\sharp1_1.exe
+C:\My fun\C#\sharp1_1\sharp1_1\bin\Debug\sharp1_1.pdb
+C:\My fun\C#\sharp1_1\sharp1_1\obj\Debug\sharp1_1.csproj.AssemblyReference.cache
+C:\My fun\C#\sharp1_1\sharp1_1\obj\Debug\sharp1_1.csproj.CoreCompileInputs.cache
+C:\My fun\C#\sharp1_1\sharp1_1\obj\Debug\sharp1_1.exe
+C:\My fun\C#\sharp1_1\sharp1_1\obj\Debug\sharp1_1.pdb
