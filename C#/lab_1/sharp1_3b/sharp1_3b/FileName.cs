@@ -6,7 +6,7 @@ class Program
     static void Main(string[] args)
     {
         double[] numbers;
-        if (args.Length < 1)
+        if (args.Length == 0)
         {
             Console.WriteLine("The flag is not entered.");
             return;

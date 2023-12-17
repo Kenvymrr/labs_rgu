@@ -66,7 +66,7 @@ class Program
     static void ModifyString(string input)
     {
         string[] words = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        string modifiedString = string.Join(" ", words.Select(word => char.ToUpper(word[0]) + word.Substring(1, word.Length - 2) + char.ToLower(word[word.Length - 1])));
+        string modifiedString = string.Join(" ", words.Select(word => (word.Length > 1 ? char.ToUpper(word[0]) + word.Substring(1, word.Length - 2) + char.ToLower(word[word.Length - 1]) : word)));
         Console.WriteLine("Modified line: " + modifiedString);
     }
 

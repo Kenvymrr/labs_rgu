@@ -47,7 +47,7 @@ class Program
 
     static string ConvertFractionalPartToBase(double fractionalPart, int baseNumber)
     {
-        const int maxFractionalPartLength = 15;
+        const int maxFractionalPartLength = 10;
         string result = "";
         int count = 0;
 

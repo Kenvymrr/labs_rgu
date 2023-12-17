@@ -11,7 +11,7 @@ class Program
             throw new ArgumentException("At a given interval, the function does not change its sign, the root cannot be found by dichotomy.");
         }
 
-        int maxIterations = 10000; // Увеличиваем количество итераций
+        int maxIterations = 10000; 
         double c = 0;
 
         for (int i = 0; i < maxIterations; i++)
@@ -47,7 +47,6 @@ class Program
         double root2 = FindRoot(0, 1, equation2, 0.001);
         Console.WriteLine($"Root: {root2}");
 
-        Console.WriteLine("\nPress any key to exit...");
         Console.ReadKey();
     }
 }

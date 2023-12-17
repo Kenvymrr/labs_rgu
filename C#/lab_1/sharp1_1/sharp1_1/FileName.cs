@@ -72,41 +72,72 @@ class Program
         return roots;
     }
 
+    //static double[] SolveCubicEquationWithoutCardano(double a, double b, double c, double d)
+    //{
+    //    // We use Newton's method to find the roots
+    //    // The initial values can be chosen arbitrarily, but they affect the convergence of the method
+    //    double x = 0.0;
+    //    double epsilon = 0.001;
+    //
+    //    // The iterative process of Newton's method
+    //    while (true)
+    //    {
+    //        double fx = a * x * x * x + b * x * x + c * x + d;
+    //        double fderivative = 3 * a * x * x + 2 * b * x + c;
+    //
+    //        double h = x - fx / fderivative;
+    //
+    //        // Checking for convergence
+    //        if (Math.Abs(h) < epsilon)
+    //        {
+    //            break;
+    //        }
+    //
+    //        x -= h;
+    //    }
+    //
+    //    // The found value x is one of the roots
+    //    // Next, you can use the division of the synthetic division to obtain a quadratic equation
+    //
+    //    double discriminant = b * b - 4 * a * (c + x * (3 * a * x + 2 * b));
+    //    double sqrtDiscriminant = Math.Sqrt(Math.Abs(discriminant));
+    //
+    //    double[] roots = new double[3];
+    //
+    //    roots[0] = (-b + sqrtDiscriminant) / (2 * a);
+    //    roots[1] = (-b - sqrtDiscriminant) / (2 * a);
+    //    roots[2] = x;
+    //
+    //    return roots;
+    //}
+
     static double[] SolveCubicEquationWithoutCardano(double a, double b, double c, double d)
     {
-        // We use Newton's method to find the roots
-        // The initial values can be chosen arbitrarily, but they affect the convergence of the method
         double x0 = 0.0;
-        double epsilon = 1e-6;
-
-        // The iterative process of Newton's method
-        while (true)
-        {
-            double fx = a * x0 * x0 * x0 + b * x0 * x0 + c * x0 + d;
-            double fprime = 3 * a * x0 * x0 + 2 * b * x0 + c;
-
-            double x1 = x0 - fx / fprime;
-
-            // Checking for convergence
-            if (Math.Abs(x1 - x0) < epsilon)
-            {
-                break;
-            }
-
-            x0 = x1;
-        }
-
-        // The found value x0 is one of the roots
-        // Next, you can use the division of the synthetic division to obtain a quadratic equation
-
-        double discriminant = b * b - 4 * a * (c + x0 * (3 * a * x0 + 2 * b));
-        double sqrtDiscriminant = Math.Sqrt(Math.Abs(discriminant));
-
+        int maxIterations = 10000;
+        double epsilon = 0.001;
         double[] roots = new double[3];
 
-        roots[0] = (-b + sqrtDiscriminant) / (2 * a);
-        roots[1] = (-b - sqrtDiscriminant) / (2 * a);
-        roots[2] = x0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < maxIterations; j++)
+            {
+                double fx = a * Math.Pow(x0, 3) + b * Math.Pow(x0, 2) + c * x0 + d;
+                double dfx = 3 * a * Math.Pow(x0, 2) + 2 * b * x0 + c;
+
+                double x1 = x0 - fx / dfx;
+
+                if (Math.Abs(x1 - x0) < epsilon)
+                {
+                    roots[i] = x1;
+                    break;
+                }
+
+                x0 = x1;
+            }
+
+            x0 += 1.0;
+        }
 
         return roots;
     }

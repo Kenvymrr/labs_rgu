@@ -19,14 +19,14 @@ class Calculator_e
         return e;
     }
 
-    // Вычисление значения числа e через уравнение e = lim(1 + 1/n)^n при n -> бесконечности
+    // Вычисление значения числа e через предел e = lim(1 + 1/n)^n при n -> бесконечности
     public static double CalculateEByLimit(double epsilon)
     {
         double e = Math.Pow(1.0 + epsilon, 1.0 / epsilon);
         return e;
     }
 
-    // Вычисление значения числа e через значение предела
+    // Вычисление значения числа e через значение lnx = 1
     public static double CalculateEByEquation(double epsilon)
     {
         double e = Math.E;
@@ -50,8 +50,8 @@ class Calculator_e
 
     static double CalculatePiByEquation(double epsilon)
     {
-        // Решение уравнения: pi = 4 * arctan(1)
-        return 4 * Math.Atan(1);
+        // Решение уравнения: cosx = -1
+        return Math.Acos(-1);
     }
 
     static double CalculatePiByLimit(double epsilon)
@@ -92,30 +92,43 @@ class Calculator_e
     static double CalculateLnEquation(double epsilon)
     {
         double x = 0.0;
-        x = Math.Log(2);
+        while (Math.Abs(Math.Exp(x) - 2.0) > epsilon)
+        {
+            x -= (Math.Exp(x) - 2.0) / Math.Exp(x);
+        }
         return x;
     }
 
     static double CalculateLnLimit(double epsilon)
     {
-        // Предел ln(1 + x) при x -> 0 равен x
-        return Math.Log(2);
+        double prev = 0;
+        double cur = 2;
+        for (int counter = 1; counter <= int.MaxValue && Math.Abs(cur - prev) > epsilon; counter++)
+        {
+            prev = cur;
+            cur = counter * (Math.Pow(2, 1.0 / counter) - 1);
+        }
+        return cur;
     }
 
     static double CalculateSqrt2Series(double epsilon)
     {
         double result = 1.0;
-        double term = 1.0;
-        int n = 1;
+        double term;
+        int iter = 100000;
 
-        while (Math.Abs(term) > epsilon)
+        for (int k = 2; k <= iter; k++)
         {
-            term *= -1.0 * (2 * n - 1) / (2 * n);
-            result += term;
-            n++;
+            term = Math.Pow(2, Math.Pow(2, -k));
+
+            if (Math.Abs(term) < epsilon)
+            {
+                break;
+            }
+            result *= term;
         }
 
-        return result * 2;
+        return result;
     }
 
 
@@ -135,7 +148,7 @@ class Calculator_e
     {
         // Предел для sqrt(2) как предел последовательности x_n = (x_{n-1} + 2 / x_{n-1}) / 2
 
-        double x = 1.0; // Начальное предположение
+        double x = 1.0;
 
         do
         {
@@ -158,31 +171,56 @@ class Calculator_e
     }
     static double CalculateGammaSeries(double epsilon)
     {
-        double x = 5.0;
-        double sum = 1.0 / x;
-        double term = 1.0 / x;
-
-        for (int n = 1; Math.Abs(term) >= epsilon; n++)
+        double eCurrent = 1;
+        double ePrevious = 0;
+        double result = 0;
+        int count = 0;
+        for (int n = 1; Math.Abs(eCurrent - ePrevious) > epsilon; n++)
         {
-            term = (1.0 / Factorial(n)) * Math.Pow((x / (1 + x)), n);
-            sum += term;
+            ePrevious = eCurrent;
+            eCurrent += (1.0 / n);
+            ++count;
         }
+        return eCurrent - Math.Log(count) - 1;
+    }
 
-        return sum;
+    public static bool IsPrime(int number)
+    {
+        for (int i = 2; i < Math.Sqrt(number); i++)
+        {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
     }
     static double CalculateGammaEquation(double epsilon)
     {
-        // Реализация уравнения Эйлера для Гамма-функции
-        // Для примера используется формула Гаусса
-        double x = 5.0;
-        return Math.Exp(-x) * Math.Pow(x, x - 0.5) * Math.Sqrt(2 * Math.PI) * (1 + 1 / (12 * x) + 1 / (288 * x * x) - 139 / (51840 * x * x * x) - 571 / (2488320 * x * x * x * x));
+        return Math.Pow(epsilon, CalculateGammaSeries(epsilon));
     }
 
     static double CalculateGammaLimit(double epsilon)
     {
-        // Реализация значения Гамма через предел Гаусса
-        double x = 5.0;
-        return Math.Sqrt(2 * Math.PI / x) * Math.Pow((x / Math.E), x);
+        int n = (int)(1.0 / epsilon) * 100;
+        double result = 1;
+        double ePrevious = 0;
+        double eCurrent = 1;
+        for (int m = 2; m < n; m++)
+        {
+            ePrevious = eCurrent;
+            eCurrent = result + (1 / m) - Math.Log(n);
+
+            if (Math.Abs(eCurrent - ePrevious) > epsilon)
+            {
+                result += 1.0 / m;
+                ePrevious = eCurrent;
+            }
+            else
+            {
+                result = result - Math.Log(m);
+                break;
+            }
+        }
+        return result;
     }
 
     static void Main(string[] args)
@@ -237,13 +275,13 @@ class Calculator_e
         Console.WriteLine($"Значение числа sqrt(2) через предел: {sqrt2Limit}");
 
         // Вычисление числа gamma различными методами
-        //double GammaSeries = CalculateGammaSeries(epsilon);
-        //double GammaEquation = CalculateGammaEquation(epsilon);
-        //double GammaLimit = CalculateGammaLimit(epsilon);
+        double GammaSeries = CalculateGammaSeries(epsilon);
+        double GammaEquation = CalculateGammaEquation(epsilon);
+        double GammaLimit = CalculateGammaLimit(epsilon);
 
-        //Console.WriteLine($"\nЗначение числа gamma через сумму ряда: {GammaSeries}");
-        //Console.WriteLine($"Значение числа gamma через уравнение: {GammaEquation}");
-        //Console.WriteLine($"Значение числа gamma через предел: {GammaLimit}");
+        Console.WriteLine($"\nЗначение числа gamma через сумму ряда: {GammaSeries}");
+        Console.WriteLine($"Значение числа gamma через уравнение: {GammaEquation}");
+        Console.WriteLine($"Значение числа gamma через предел: {GammaLimit}");
     }
 }
 

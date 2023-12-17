@@ -68,11 +68,11 @@ class Student : IEquatable<Student>
     {
         unchecked // disabling overflow check
         {
-            int hash = 17; // choosing the base number for the hash
-            hash = hash * 23 + fullName.GetHashCode(); // combining the hash of each field
-            hash = hash * 23 + group.GetHashCode();
-            hash = hash * 23 + studentId.GetHashCode();
-            hash = hash * 23 + course.GetHashCode();
+            int hash = 31; // choosing the base number for the hash
+            hash = hash * 31 + fullName.GetHashCode(); // combining the hash of each field
+            hash = hash * 31 + group.GetHashCode();
+            hash = hash * 31 + studentId.GetHashCode();
+            hash = hash * 31 + course.GetHashCode();
             return hash;
         }
     }

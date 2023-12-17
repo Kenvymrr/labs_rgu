@@ -1,0 +1,7 @@
+C:\My fun\C#\sharp2_2\sharp2_2\bin\Debug\sharp2_2.exe.config
+C:\My fun\C#\sharp2_2\sharp2_2\bin\Debug\sharp2_2.exe
+C:\My fun\C#\sharp2_2\sharp2_2\bin\Debug\sharp2_2.pdb
+C:\My fun\C#\sharp2_2\sharp2_2\obj\Debug\sharp2_2.csproj.AssemblyReference.cache
+C:\My fun\C#\sharp2_2\sharp2_2\obj\Debug\sharp2_2.csproj.CoreCompileInputs.cache
+C:\My fun\C#\sharp2_2\sharp2_2\obj\Debug\sharp2_2.exe
+C:\My fun\C#\sharp2_2\sharp2_2\obj\Debug\sharp2_2.pdb
