@@ -1,0 +1,6 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (Project7.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  FileName.c
+C:\My fun\C\num2\Project7\FileName.c(38,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\My fun\C\num2\Project7\FileName.c(39,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\My fun\C\num2\Project7\FileName.c(44,15): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Project7.vcxproj -> C:\My fun\C\num2\x64\Debug\num2.exe
